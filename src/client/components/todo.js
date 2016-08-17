@@ -2,24 +2,22 @@
  * Created by Antoine on 11/07/2016.
  */
 import React from 'react'
-import _ from 'lodash'
+import { map, filter } from 'ramda'
 import TaskList from './tasklist'
 
-const Todo = ({ lists, tasks, handlers }) => {
-  // console.warn('selector result:', getTasksByListId(443, tasks))
-  // console.warn('tasks :', tasks);
-  return (
+const Todo = ({ lists, tasks, handlers }) => (
   <div className='todo'>
-  {_.map(lists, (taskList) => (
+  {map(taskList => (
     <TaskList
       handlers={ handlers }
       key={ taskList.id }
       list={ taskList }
-      // getTasksByListId selector
-      // tasks={ getTasksByListId(taskList, tasks) } />))}
-      tasks={ _.filter(tasks, t => (t.listId === taskList.id)) } />))}
+      tasks={
+        filter(t => (t.listId === taskList.id)),
+        tasks } />),
+  lists)}
   </div>
-)}
+)
 
 Todo.propTypes = {
   handlers: React.PropTypes.object.isRequired,

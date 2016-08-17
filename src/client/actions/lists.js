@@ -7,9 +7,12 @@ export const ADD_LIST = 'ADD_LIST';
 export const DEL_LIST = 'DEL_LIST';
 export const GOT_LISTS = 'GOT_LISTS';
 
-export const addList = (list) => ({
+export const addList = list => ({
   type: ADD_LIST,
-  list,
+  list: {
+    ...list,
+    id: parseInt(list.id),
+  },
 })
 
 export const delList = id => ({
@@ -24,7 +27,7 @@ export const gotLists = lists => ({
 
 export const deleteList = (id) => (dispatch) => {
   dispatch(working(LISTS));
-  return (apiCall({ method: 'DELETE' })('list/'.concat(id))(r => dispatch(delList(r.id))))
+  return (apiCall({ method: 'DELETE' })('lists/'.concat(id))(r => dispatch(delList(r.id))))
 }
 
 export const pushList = (newList) => (dispatch) => {

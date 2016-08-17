@@ -2,7 +2,7 @@
  * Created by Antoine on 11/07/2016.
  */
 import React from 'react'
-import _ from 'lodash'
+import { map } from 'ramda'
 import ListHead from './listhead'
 import Task from './task'
 import NewTask from './newtask'
@@ -18,8 +18,8 @@ const TaskList = ({ handlers, list, tasks }) => (
       input={ list.input }
       listId={ list.id }
       onNewTask={ handlers.onNewTask } />
-    {_.map(tasks, (task =>
-      <Task key={task.id} onDelTask={ handlers.onDelTask } task={task} />))}
+    {map(task =>
+      <Task key={task.id} onDelTask={ handlers.onDelTask } task={task} />, tasks)}
     </div>
   </div>
 )
