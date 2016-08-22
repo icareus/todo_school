@@ -1,8 +1,9 @@
 import { createSelector } from 'reselect'
+import { prop } from 'ramda'
 
-const getApiStatus = state => state.api
-const getLists = state => state.lists
-const getTasks = state => state.tasks
+const getApiStatus = prop('api')
+const getLists = prop('lists')
+const getTasks = prop('tasks')
 
 const storeSelector = createSelector(
   getApiStatus, getLists, getTasks,

@@ -19,8 +19,7 @@ export default function tasks(state = [], action) {
       state);
 
   case GOT_TASKS:
-    return map(t => ({ ...t, key: t.id }),
-      action.tasks)
+    return action.tasks
 
   default:
     return state;

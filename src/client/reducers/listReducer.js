@@ -3,7 +3,7 @@
  */
 // import _ from 'lodash'
 import { ADD_LIST, DEL_LIST, GOT_LISTS } from '../actions/lists'
-import { ADD_TASK, INPUT_TASK } from '../actions/tasks'
+import { ADD_TASK } from '../actions/tasks'
 import { append, assoc, evolve, map, memoize, pipe, reject } from 'ramda'
 
 const toInt = memoize(x => parseInt(x, 10)) // memoizing because I can
@@ -30,12 +30,13 @@ export default function lists(state = [], action) {
     //   list.id === parseInt(action.id) ?
     //     list : _.create(list, { input: '' })))
 
-  case INPUT_TASK:
-    return map(list =>
-      list.id === toInt(action.id)
-      ? assoc('input', action.input, list)
-      : list,
-    state)
+  // Deprecated since task input is now controlled
+  // case INPUT_TASK:
+  //   return map(list =>
+  //     list.id === toInt(action.id)
+  //     ? assoc('input', action.input, list)
+  //     : list,
+  //   state)
     // return _.map(state, list => (
     //   (list.id === parseInt(action.id)) ?
     //     _.create(list, { input: action.input }) : list))
